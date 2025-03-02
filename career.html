@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Path Finder</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: #FF6F61;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+        }
+
+        /* Login Section */
+        #login h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #login input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        /* Interest Section */
+        .interest-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .interest-section div {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .interest-section label {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .interest-section input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        /* Marks Section */
+        .marks-section {
+            color: black;
+        }
+
+        .marks-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .marks-section input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .marks-section label {
+            font-size: 18px;
+            margin-top: 10px;
+            display: block;
+        }
+
+        .marks-section div {
+            margin: 15px 0;
+        }
+
+        /* Buttons */
+        button {
+            background-color: #FF6F61;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #FF4E41;
+        }
+
+        button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+
+        /* Hidden Class */
+        .hidden {
+            display: none;
+        }
+
+        /* Suitable Courses Section */
+        .course-list {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+
+        .filter-section select {
+            padding: 8px;
+            margin-left: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .course-item {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            width: 100%;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            font-size: 18px;
+            color: #000;
+        }
+
+        .course-item h3 {
+            color: #FF6F61;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .college-list {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+
+        .college-list li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .college-list li a {
+            color: #4682B4;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .college-list li a:hover {
+            text-decoration: underline;
+        }
+
+        .college-list li button {
+            width: auto;
+            padding: 8px 15px;
+            margin-top: 10px;
+            background-color: #4682B4;
+            font-size: 14px;
+        }
+
+        .college-list li button:hover {
+            background-color: #3A6B96;
+        }
+
+        /* Impact Section */
+        .impact-container {
+            margin-top: 30px;
+            background-color: #FFD700;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        .impact-container h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .impact-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .impact-box {
+            background-color: #4682B4;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .impact-box h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .header p {
+                font-size: 16px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .impact-boxes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Career Path Finder</h1>
+        <p>Your gateway to a better future. Find the right career path based on your interests, scores, and preferences.</p>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <!-- Login Page -->
+        <div id="login">
+            <h2>Login</h2>
+            <input type="email" placeholder="Email" id="email" />
+            <input type="password" placeholder="Password" id="password" />
+            <button onclick="validateLogin()">Login</button>
+        </div>
+
+        <!-- Interest Selection -->
+        <div id="interest" class="interest-section hidden">
+            <h2>Select Your Interests (Choose Multiple)</h2>
+            <div>
+                <label><input type="checkbox" value="cooking" class="interest"> Cooking</label>
+                <label><input type="checkbox" value="dancing" class="interest"> Dancing</label>
+                <label><input type="checkbox" value="coding" class="interest"> Coding</label>
+                <label><input type="checkbox" value="singing" class="interest"> Singing</label>
+                <label><input type="checkbox" value="writing" class="interest"> Writing</label>
+                <label><input type="checkbox" value="photography" class="interest"> Photography</label>
+                <label><input type="checkbox" value="sports" class="interest"> Sports</label>
+                <label><input type="checkbox" value="music" class="interest"> Music</label>
+                <label><input type="checkbox" value="design" class="interest"> Design</label>
+                <label><input type="checkbox" value="fashion" class="interest"> Fashion</label>
+                <label><input type="checkbox" value="environment" class="interest"> Environmental Science</label>
+                <label><input type="checkbox" value="business" class="interest"> Business & Management</label>
+                <label><input type="checkbox" value="architecture" class="interest"> Architecture</label>
+                <label><input type="checkbox" value="robotics" class="interest"> Robotics</label>
+                <label><input type="checkbox" value="psychology" class="interest"> Psychology</label>
+                <label><input type="checkbox" value="film" class="interest"> Film Production</label>
+                <label><input type="checkbox" value="socialWork" class="interest"> Social Work</label>
+                <label><input type="checkbox" value="law" class="interest"> Law</label>
+                <label><input type="checkbox" value="marketing" class="interest"> Marketing</label>
+                <label><input type="checkbox" value="finance" class="interest"> Finance</label>
+                <label><input type="checkbox" value="medicine" class="interest"> Medicine</label>
+            </div>
+            <button onclick="showMarksSection()">Next</button>
+        </div>
+
+        <!-- Marks Section -->
+        <div id="marks" class="hidden marks-section">
+            <h2>Enter Your Marks</h2>
+            <label for="sscMarks">Enter SSC Marks (%)</label>
+            <input type="number" id="sscMarks" placeholder="Enter SSC Marks in Percentage" />
+
+            <label>Select Your Exam (Choose Two Exams Only)</label>
+            <div>
+                <label><input type="checkbox" id="jeeCheckbox" onclick="toggleExamInput('jee')"> JEE</label>
+                <label><input type="checkbox" id="neetCheckbox" onclick="toggleExamInput('neet')"> NEET</label>
+                <label><input type="checkbox" id="cetCheckbox" onclick="toggleExamInput('cet')"> CET</label>
+            </div>
+
+            <div id="jeeMarksDiv" class="hidden">
+                <label for="jeeMarks">Enter JEE Marks</label>
+                <input type="number" id="jeeMarks" placeholder="Enter JEE Marks" />
+            </div>
+            <div id="neetMarksDiv" class="hidden">
+                <label for="neetMarks">Enter NEET Marks</label>
+                <input type="number" id="neetMarks" placeholder="Enter NEET Marks" />
+            </div>
+            <div id="cetMarksDiv" class="hidden">
+                <label for="cetMarks">Enter CET Marks</label>
+                <input type="number" id="cetMarks" placeholder="Enter CET Marks" />
+            </div>
+
+            <button onclick="showSuitableCourses()">Show Suitable Courses</button>
+        </div>
+
+        <!-- Suitable Courses Section -->
+        <div id="courses" class="hidden">
+            <h2>Suitable Courses</h2>
+            <div id="courseList" class="course-list"></div>
+        </div>
+    </div>
+
+    <!-- Impact Section -->
+    <div class="impact-container">
+        <h2>How Career Path Finder Helps</h2>
+        <div class="impact-boxes">
+            <div class="impact-box">
+                <h3>Helps students choose the right course after 12th</h3>
+                <p>Guides students in selecting the most suitable career path based on their interests and scores.</p>
+            </div>
+            <div class="impact-box">
+                <h3>Reduces confusion by aligning options with interests and scores</h3>
+                <p>Provides clarity by matching career choices with what the student enjoys and excels in.</p>
+            </div>
+            <div class="impact-box">
+                <h3>Saves time with personalized college recommendations</h3>
+                <p>Suggests colleges that best match the student's chosen career path and preferences.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>&copy; 2025 Career Path Finder. All rights reserved.</p>
+    </div>
+
+    <script>
+        // Function to View College Location on Google Maps - Define this first
+        function viewLocation(location) {
+            const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
+            window.open(googleMapsUrl, "_blank");
+        }
+        
+        // Function to Filter Colleges by Location
+        function filterColleges() {
+            const selectedLocation = document.getElementById("locationFilter").value;
+            const collegeItems = document.querySelectorAll(".college-list li");
+            
+            collegeItems.forEach(item => {
+                const collegeLocation = item.getAttribute("data-location");
+                if (selectedLocation === "all" || collegeLocation === selectedLocation) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.container > div');
+            sections.forEach(section => section.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function validateLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+
+            if (!email) {
+                alert("Please enter your email address.");
+                return;
+            }
+
+            if (!password) {
+                alert("Please enter your password.");
+                return;
+            }
+
+            if (!password.match(specialCharRegex)) {
+                alert("Password must contain at least one special character.");
+                return;
+            }
+
+            // Hide login section and show interest section
+            showSection('interest');
+        }
+
+        function showMarksSection() {
+            const interests = getSelectedInterests();
+            if (interests.length === 0) {
+                alert("Please select at least one interest before proceeding.");
+                return;
+            }
+            showSection('marks');
+        }
+
+        function toggleExamInput(exam) {
+            const jeeCheckbox = document.getElementById('jeeCheckbox');
+            const neetCheckbox = document.getElementById('neetCheckbox');
+            const cetCheckbox = document.getElementById('cetCheckbox');
+            const jeeMarksDiv = document.getElementById('jeeMarksDiv');
+            const neetMarksDiv = document.getElementById('neetMarksDiv');
+            const cetMarksDiv = document.getElementById('cetMarksDiv');
+
+            // Count selected exams
+            const selectedExams = [jeeCheckbox.checked, neetCheckbox.checked, cetCheckbox.checked].filter(Boolean).length;
+
+            // If more than 2 exams selected, uncheck the current one
+            if (selectedExams > 2) {
+                if (exam === 'jee') jeeCheckbox.checked = false;
+                if (exam === 'neet') neetCheckbox.checked = false;
+                if (exam === 'cet') cetCheckbox.checked = false;
+                alert("You can only select two exams maximum.");
+                return;
+            }
+
+            // Toggle input fields based on checkbox status
+            jeeMarksDiv.classList.toggle('hidden', !jeeCheckbox.checked);
+            neetMarksDiv.classList.toggle('hidden', !neetCheckbox.checked);
+            cetMarksDiv.classList.toggle('hidden', !cetCheckbox.checked);
+        }
+
+        function getSelectedInterests() {
+            const interests = [];
+            const checkboxes = document.querySelectorAll('.interest:checked');
+            checkboxes.forEach(checkbox => interests.push(checkbox.value));
+            return interests;
+        }
+
+        function showSuitableCourses() {
+            const selectedInterests = getSelectedInterests();
+            const sscMarks = parseFloat(document.getElementById("sscMarks").value) || 0;
+            const jeeMarks = document.getElementById("jeeMarks").value ? parseFloat(document.getElementById("jeeMarks").value) : 0;
+            const neetMarks = document.getElementById("neetMarks").value ? parseFloat(document.getElementById("neetMarks").value) : 0;
+            const cetMarks = document.getElementById("cetMarks").value ? parseFloat(document.getElementById("cetMarks").value) : 0;
+            
+            const courseList = document.getElementById("courseList");
+            courseList.innerHTML = ""; // Clear previous data
+            
+            // Validate inputs
+            if (sscMarks === 0) {
+                alert("Please enter your SSC marks.");
+                return;
+            }
+            
+            if (selectedInterests.length === 0) {
+                courseList.innerHTML = "<p>Please select at least one interest.</p>";
+                return;
+            }
+            
+            // Comprehensive course and college mapping with detailed information
+            const coursesWithColleges = {
+                "Computer Science": [
+                    { 
+                        name: "IIT Bombay", 
+                        link: "https://www.iitb.ac.in", 
+                        location: "Mumbai", 
+                        requiredExam: "JEE Advanced", 
+                        cutoff: "Top 2% in JEE",
+                        minMarks: { ssc: 75, jee: 250, neet: 0, cet: 150 }
+                    },
+                    { 
+                        name: "IIIT Hyderabad", 
+                        link: "https://www.iiit.ac.in", 
+                        location: "Hyderabad", 
+                        requiredExam: "JEE Mains", 
+                        cutoff: "98+ Percentile",
+                        minMarks: { ssc: 70, jee: 200, neet: 0, cet: 140 }
+                    },
+                    { 
+                        name: "BITS Pilani", 
+                        link: "https://www.bits-pilani.ac.in", 
+                        location: "Pilani", 
+                        requiredExam: "BITSAT", 
+                        cutoff: "280+ Score",
+                        minMarks: { ssc: 75, jee: 220, neet: 0, cet: 145 }
+                    }
+                ],
+                "Artificial Intelligence": [
+                    { 
+                        name: "IIT Hyderabad", 
+                        link: "https://www.iith.ac.in", 
+                        location: "Hyderabad", 
+                        requiredExam: "JEE Advanced", 
+                        cutoff: "Top 5% in JEE",
+                        minMarks: { ssc: 75, jee: 230, neet: 0, cet: 140 }
+                    },
+                    { 
+                        name: "IIIT Bangalore", 
+                        link: "https://www.iiitb.ac.in", 
+                        location: "Bangalore", 
+                        requiredExam: "JEE Mains/COMEDK", 
+                        cutoff: "95+ Percentile",
+                        minMarks: { ssc: 70, jee: 190, neet: 0, cet: 135 }
+                    }
+                ],
+                "Medicine": [
+                    { 
+                        name: "AIIMS Delhi", 
+                        link: "https://www.aiims.edu", 
+                        location: "Delhi", 
+                        requiredExam: "NEET", 
+                        cutoff: "650+ Score",
+                        minMarks: { ssc: 80, jee: 0, neet: 650, cet: 0 }
+                    },
+                    { 
+                        name: "CMC Vellore", 
+                        link: "https://www.cmch-vellore.edu", 
+                        location: "Chennai", 
+                        requiredExam: "NEET", 
+                        cutoff: "600+ Score",
+                        minMarks: { ssc: 75, jee: 0, neet: 600, cet: 0 }
+                    },
+                    { 
+                        name: "JIPMER Puducherry", 
+                        link: "https://www.jipmer.edu.in", 
+                        location: "Puducherry", 
+                        requiredExam: "NEET", 
+                        cutoff: "600+ Score",
+                        minMarks: { ssc: 75, jee: 0, neet: 600, cet: 0 }
+                    }
+                ],
+                "Business Administration": [
+                    { 
+                        name: "IIM Ahmedabad", 
+                        link: "https://www.iima.ac.in", 
+                        location: "Ahmedabad", 
+                        requiredExam: "CAT", 
+                        cutoff: "99+ Percentile",
+                        minMarks: { ssc: 70, jee: 0, neet: 0, cet: 130 }
+                    },
+                    { 
+                        name: "ISB Hyderabad", 
+                        link: "https://www.isb.edu", 
+                        location: "Hyderabad", 
+                        requiredExam: "GMAT", 
+                        cutoff: "700+ Score",
+                        minMarks: { ssc: 70, jee: 0, neet: 0, cet: 120 }
+                    }
+                ],
+                "Fashion Design": [
+                    { 
+                        name: "NIFT Delhi", 
+                        link: "https://www.nift.ac.in", 
+                        location: "Delhi", 
+                        requiredExam: "NIFT Entrance", 
+                        cutoff: "Merit Based",
+                        minMarks: { ssc: 65, jee: 0, neet: 0, cet: 110 }
+                    },
+                    { 
+                        name: "Pearl Academy", 
+                        link: "https://pearlacademy.com", 
+                        location: "Mumbai", 
+                        requiredExam: "Entrance Test", 
+                        cutoff: "Merit Based",
+                        minMarks: { ssc: 60, jee: 0, neet: 0, cet: 100 }
+                    }
+                ],
+                "Law": [
+                    { 
+                        name: "NLU Delhi", 
+                        link: "https://nludelhi.ac.in", 
+                        location: "Delhi", 
+                        requiredExam: "CLAT", 
+                        cutoff: "Top 5%",
+                        minMarks: { ssc: 70, jee: 0, neet: 0, cet: 125 }
+                    },
+                    { 
+                        name: "NALSAR Hyderabad", 
+                        link: "https://nalsar.ac.in", 
+                        location: "Hyderabad", 
+                        requiredExam: "CLAT", 
+                        cutoff: "Top 8%",
+                        minMarks: { ssc: 65, jee: 0, neet: 0, cet: 120 }
+                    }
+                ],
+                "Psychology": [
+                    { 
+                        name: "Christ University", 
+                        link: "https://christuniversity.in", 
+                        location: "Bangalore", 
+                        requiredExam: "Entrance Test", 
+                        cutoff: "Merit Based",
+                        minMarks: { ssc: 65, jee: 0, neet: 0, cet: 100 }
+                    },
+                    { 
+                        name: "TISS Mumbai", 
+                        link: "https://www.tiss.edu", 
+                        location: "Mumbai", 
+                        requiredExam: "TISSNET", 
+                        cutoff: "Merit Based",
+                        minMarks: { ssc: 70, jee: 0, neet: 0, cet: 115 }
+                    }
+                ]
+            };
+            
+            // Map interests to courses
+            const interestToCourseMap = {
+                "coding": ["Computer Science", "Artificial Intelligence"],
+                "robotics": ["Computer Science", "Artificial Intelligence"],
+                "design": ["Fashion Design"],
+                "fashion": ["Fashion Design"],
+                "business": ["Business Administration"],
+                "marketing": ["Business Administration"],
+                "finance": ["Business Administration"],
+                "medicine": ["Medicine"],
+                "psychology": ["Psychology"],
+                "law": ["Law"],
+                // Add more mappings as needed
+            };
+            
+            // Get recommended courses based on interests
+            let recommendedCourses = [];
+            selectedInterests.forEach(interest => {
+                if (interestToCourseMap[interest]) {
+                    recommendedCourses = recommendedCourses.concat(interestToCourseMap[interest]);
+                }
+            });
+            
+            // Remove duplicates
+            recommendedCourses = [...new Set(recommendedCourses)];
+            
+            if (recommendedCourses.length === 0) {
+                courseList.innerHTML = "<p>No courses available for the selected interests.</p>";
+            } else {
+                // Create filter section
+                const filterSection = document.createElement("div");
+                filterSection.className = "filter-section";
+                filterSection.innerHTML = `
+                    <label for="locationFilter">Filter by Location:</label>
+                    <select id="locationFilter" onchange="filterColleges()">
+                        <option value="all">All Locations</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Pilani">Pilani</option>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                        <option value="Puducherry">Puducherry</option>
+                    </select>
+                `;
+                
+                courseList.appendChild(filterSection);
+                
+                // Display each recommended course with eligible colleges
+                recommendedCourses.forEach(course => {
+                    if (coursesWithColleges[course]) {
+                        const courseItem = document.createElement("div");
+                        courseItem.className = "course-item";
+                        courseItem.innerHTML = `<h3>${course}</h3>`;
+                        
+                        // Filter colleges based on user's marks
+                        const eligibleColleges = coursesWithColleges[course].filter(college => {
+                            return sscMarks >= college.minMarks.ssc && 
+                                ((jeeMarks >= college.minMarks.jee) || college.minMarks.jee === 0) &&
+                                ((neetMarks >= college.minMarks.neet) || college.minMarks.neet === 0) &&
+                                ((cetMarks >= college.minMarks.cet) || college.minMarks.cet === 0);
+                        });
+                        
+                        if (eligibleColleges.length === 0) {
+                            courseItem.innerHTML += `<p>No eligible colleges found based on your marks.</p>`;
+                        } else {
+                            const collegeList = document.createElement("ul");
+                            collegeList.className = "college-list";
+                            
+                            eligibleColleges.forEach(college => {
+                                const collegeItem = document.createElement("li");
+                                collegeItem.setAttribute("data-location", college.location);
+                                collegeItem.innerHTML = `
+                                    <a href="${college.link}" target="_blank">${college.name}</a>  
+                                    <p><strong>Location:</strong> ${college.location}</p>
+                                    <p><strong>Exam Required:</strong> ${college.requiredExam}</p>
+                                    <p><strong>Cutoff:</strong> ${college.cutoff}</p>
+                                    <button onclick="viewLocation('${college.name}, ${college.location}, India')">View on Map</button>
+                                `;
+                                collegeList.appendChild(collegeItem);
+                            });
+                            
+                            courseItem.appendChild(collegeList);
+                        }
+                        
+                        courseList.appendChild(courseItem);
+                    }
+                });
+            }
+            
+            showSection('courses');
+        }
+    </script>
+</body>
+</html>
